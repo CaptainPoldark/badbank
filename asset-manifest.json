@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/badbank/static/css/main.cbc7fe4c.chunk.css",
+    "main.js": "/badbank/static/js/main.75258d11.chunk.js",
+    "main.js.map": "/badbank/static/js/main.75258d11.chunk.js.map",
+    "runtime-main.js": "/badbank/static/js/runtime-main.097fecb9.js",
+    "runtime-main.js.map": "/badbank/static/js/runtime-main.097fecb9.js.map",
+    "static/js/2.3779baec.chunk.js": "/badbank/static/js/2.3779baec.chunk.js",
+    "static/js/2.3779baec.chunk.js.map": "/badbank/static/js/2.3779baec.chunk.js.map",
+    "index.html": "/badbank/index.html",
+    "static/css/main.cbc7fe4c.chunk.css.map": "/badbank/static/css/main.cbc7fe4c.chunk.css.map",
+    "static/js/2.3779baec.chunk.js.LICENSE.txt": "/badbank/static/js/2.3779baec.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.097fecb9.js",
+    "static/js/2.3779baec.chunk.js",
+    "static/css/main.cbc7fe4c.chunk.css",
+    "static/js/main.75258d11.chunk.js"
+  ]
+}
