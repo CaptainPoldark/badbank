@@ -1,0 +1,62 @@
+[
+  {
+    "firstName": "Jimmy",
+    "lastName": "Neutron",
+    "email": "jneutron@protonmail.com",
+    "password": "Goddard",
+    "balance": 185,
+    "transactions": [
+      "Deposit $100",
+      "Deposit One Diamond",
+      "Withdrawal $15",
+      "Deposit $100"
+    ],
+    "token": null
+  },
+  {
+    "firstName": "James",
+    "lastName": "McGill",
+    "email": "jmcgill@hhm.com",
+    "password": "SaulGoodman",
+    "balance": 3548,
+    "transactions": [
+      "Deposit $1200",
+      "Deposit $1200",
+      "Deposit $1200",
+      "Deposit $1200",
+      "Withdrawal $2000",
+      "Withdrawal $52",
+      "Deposit $800"
+    ],
+    "token": null
+  },
+  {
+    "firstName": "Jack",
+    "lastName": "Sparrow",
+    "email": "capjack@pearl.net",
+    "password": "193yZYCnN5uB",
+    "balance": 0,
+    "transactions": [],
+    "token": null
+  },
+  {
+    "firstName": "Guybrush",
+    "lastName": "Threepwood",
+    "email": "mightypirate@scummbucket.io",
+    "password": "porcelain",
+    "balance": 1200,
+    "transactions": [
+      "Red Herring",
+      "Root Beer",
+      "Deposit $1200",
+      "100% Cotton T-shirt",
+      "Extra Strong Magnetic Compass",
+      "Rubber Chicken with Pulley",
+      "Manual of Style",
+      "Gopher Repllant",
+      "Wax Lips",
+      "Sword"
+    ],
+    "token": null
+  }
+]

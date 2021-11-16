@@ -1,0 +1,149 @@
+body {
+  background-color: #15202b;
+}
+
+h1 {
+  color: whitesmoke;
+}
+
+p {
+  color: whitesmoke;
+}
+.btn-primary {
+    /* violet */
+    --primary-color: 111, 76, 255;
+
+    /* white */
+    --text-color: 256, 256, 256;
+}
+.navbar {
+  background-color: #22303c;
+}
+.nav-link {
+  display: inline-block;
+  padding: 0.7em;
+  margin-left: 15px;
+ 
+  text-decoration: none;
+  color: white;
+  
+}
+.nav-link:active {
+  color: #ffffff;
+}
+
+/* Ripple Out */
+@-webkit-keyframes hvr-ripple-out {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+@keyframes hvr-ripple-out {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+.hvr-ripple-out {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+}
+.hvr-ripple-out:before {
+  content: "";
+  position: absolute;
+  border: #e1e1e1 solid 1px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+.hvr-ripple-out:hover:before,
+.hvr-ripple-out:focus:before,
+.hvr-ripple-out:active:before {
+  -webkit-animation-name: hvr-ripple-out;
+  animation-name: hvr-ripple-out;
+}
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.nav-bar-greeting {
+  padding-left: 15px;
+  font-size: x-small;
+}
+
+.home-icon {
+  margin-left: auto;
+  transform: scale(2);
+  color: rgb(2,0,36);
+  color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(17,17,131,1) 40%, rgba(0,212,255,1) 100%);
+}
+.home-icon:hover {
+  transform: scale(3);
+}
+.card {
+  background-color: #192734;
+  position: relative;
+  margin-left: 5%;
+  color: #ffffff;
+  display: flex;
+}
+.card:hover {
+  background-color: #22303c;
+}
+.card:p {
+  color: #8899a6;
+}
+
+.list-group-item {
+  background-color: #192734;
+  color: #ffffff;
+}
+.list-group-item:hover {
+  background-color: #15202b;
+  color: #ffffff;
+}
+.list-group-item:nth-child(2n) {
+  background-color: #8899a6;
+  color: #ffffff;
+}
+.list-group-item:nth-child(2n):hover {
+  background-color: #22303c;
+  color: #ffffff;
+}
