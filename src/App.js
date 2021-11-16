@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 //styling
 import "./App.css";
 // Routing
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, HashRouter } from "react-router-dom";
 //Components
 import Home from "./Home";
 
@@ -22,7 +22,7 @@ import UserProvider from "./UserContext";
 
 const App = () => {
   return (
-    <Router>
+    <HashRouter>
       <AllUsers>
         <UserProvider>
 
@@ -41,7 +41,7 @@ const App = () => {
 
         </UserProvider>
       </AllUsers>
-    </Router>
+    </HashRouter>
   );
 };
 
