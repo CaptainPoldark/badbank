@@ -34,6 +34,9 @@ There are four pre-made accounts. One of which is:
 Email: jneutron@protonmail.com
 Password: Goddard
 
+None of the "user" data provided was meant to represent real email accounts. If a real email is identical 
+one of the accounts in the mock database for this app, it was unintentional.
+
 ## Roadmap
 
 Styling improvements
