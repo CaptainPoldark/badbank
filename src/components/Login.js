@@ -3,7 +3,7 @@ import Card from "./Card";
 import "./Login.css";
 import { AllUsersContext } from "../UsersContext";
 import { NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 import UserProvider, { UserContext } from "../UserContext";
 
@@ -12,6 +12,9 @@ export default function Login({ token, setToken }) {
   const [currentUser, setCurrentUser] = React.useContext(UserContext);
   const [username, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [failedLogin, setFailedLogin] = useState("");
+
+  console.log(failedLogin);
 
   let show = currentUser.token == null;
   console.log(show);
@@ -24,7 +27,7 @@ export default function Login({ token, setToken }) {
       password,
       updateList,
     });
-    console.log(token);
+    console.log(token); //should be null prelogin
 
     console.log(currentUser);
     show = currentUser.token == null;
@@ -36,6 +39,10 @@ export default function Login({ token, setToken }) {
     });
 
     if (!userFound) {
+      setFailedLogin(
+        "Either the username or password you entered were incorrect. Please, try again."
+      );
+      setTimeout(() => setFailedLogin(""), 3000);
       return null;
     }
 
@@ -45,6 +52,7 @@ export default function Login({ token, setToken }) {
         return "Success";
       } else {
         console.log("Failed login");
+
         return "Failed";
       }
     };
@@ -61,54 +69,70 @@ export default function Login({ token, setToken }) {
       setCurrentUser(userFound);
       console.log(currentUser);
       return "test123";
+    }
+    if (verify == "Failed") {
+      setFailedLogin(
+        "Either the username or password you entered were incorrect. Please, try again."
+      );
+      setTimeout(() => setFailedLogin(""), 3000);
+      return null;
     } else {
       console.log("return null");
       return null;
     }
   };
 
-  return show ? (
-    <Card
-      bgcolor="dark"
-      header="Please Log In"
-      //status={status}
-      body={
-        <div className="login-wrapper">
-          <form onSubmit={handleSubmit}>
-            <label>
-              <p>Email</p>
-              <input type="text" onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-              <p>Password</p>
-              <input
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
-            <div>
-              <button type="submit">Login</button>
+  return (
+    <div>
+      {show ? (
+        <div>
+          <Card
+            bgcolor="dark"
+            header="Please Log In"
+            status={<div><br/>{failedLogin}</div>}
+            body={
+              <div className="login-wrapper">
+                <form onSubmit={handleSubmit}>
+                  <label>
+                    <p>Email</p>
+                    <input
+                      type="text"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    <p>Password</p>
+                    <input
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </label>
+                  <div>
+                    <button type="submit">Login</button>
+                  </div>
+                </form>
+              </div>
+            }
+          ></Card>
+        </div>
+      ) : (
+        <Card
+          bgcolor="dark"
+          header={<h3>You've successfully logged in!</h3>}
+          //status={status}
+          body={
+            <div className="login-wrapper">
+              <div>
+                <NavLink to="/balance">
+                  <Button className="btn-primary" variant="primary">
+                    Check your balance
+                  </Button>
+                </NavLink>
+              </div>
             </div>
-          </form>
-        </div>
-      }
-    ></Card>
-  ) : (
-    <Card
-      bgcolor="dark"
-      header={<h3>You've successfully logged in!</h3>}
-      //status={status}
-      body={
-        <div className="login-wrapper">
-          <div>
-            <NavLink to="/balance">
-              <Button className="btn-primary" variant="primary">
-                Check your balance
-              </Button>
-            </NavLink>
-          </div>
-        </div>
-      }
-    ></Card>
+          }
+        ></Card>
+      )}
+    </div>
   );
 }

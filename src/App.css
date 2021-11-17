@@ -10,26 +10,33 @@ p {
   color: whitesmoke;
 }
 .btn-primary {
-    /* violet */
-    --primary-color: 111, 76, 255;
+  /* violet */
+  --primary-color: 111, 76, 255;
 
-    /* white */
-    --text-color: 256, 256, 256;
+  /* white */
+  --text-color: 256, 256, 256;
 }
 .navbar {
   background-color: #22303c;
+  -moz-box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 15px 20px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
 }
+
 .nav-link {
   display: inline-block;
-  padding: 0.7em;
-  margin-left: 15px;
- 
+  margin: 1em;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 40px;
   text-decoration: none;
   color: white;
-  
 }
-.nav-link:active {
-  color: #ffffff;
+
+.banner {
+  -moz-box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 15px 20px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
 }
 
 /* Ripple Out */
@@ -59,6 +66,7 @@ p {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   position: relative;
 }
+
 .hvr-ripple-out:before {
   content: "";
   position: absolute;
@@ -70,11 +78,31 @@ p {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
 }
+.active {
+  background: rgb(2, 0, 36);
+  height: 80%;
+  background-size: 100% 80%;
+  background: linear-gradient(
+    90deg,
+    transparent 10%,
+    rgba(2, 0, 36, 1) 40%,
+
+    rgba(25, 25, 82, 1) 60%,
+
+    rgba(0, 212, 255, 1) 85%,
+    transparent 90%
+  );
+
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+
+}
 .hvr-ripple-out:hover:before,
 .hvr-ripple-out:focus:before,
 .hvr-ripple-out:active:before {
   -webkit-animation-name: hvr-ripple-out;
   animation-name: hvr-ripple-out;
+  border-radius: 3%;
 }
 /* Tooltip container */
 .tooltip {
@@ -111,8 +139,14 @@ p {
 .home-icon {
   margin-left: auto;
   transform: scale(2);
-  color: rgb(2,0,36);
-  color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(17,17,131,1) 40%, rgba(0,212,255,1) 100%);
+  color: rgb(2, 0, 36);
+  color: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(17, 17, 131, 1) 40%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 .home-icon:hover {
   transform: scale(3);
@@ -123,7 +157,11 @@ p {
   margin-left: 5%;
   color: #ffffff;
   display: flex;
+  -moz-box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 15px 20px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
 }
+
 .card:hover {
   background-color: #22303c;
 }
@@ -146,4 +184,14 @@ p {
 .list-group-item:nth-child(2n):hover {
   background-color: #22303c;
   color: #ffffff;
+}
+
+.choice-btn {
+  -moz-box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 15px 20px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+}
+
+.transaction-card {
+  padding-bottom: 15px;
 }

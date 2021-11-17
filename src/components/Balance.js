@@ -14,13 +14,13 @@ const Balance = () => {
       header="BadBank Balance"
       title="Snapshot of your balance"
       text={
-        (transactions.length == 0)
-          ? "No transactions yet"
-          : (transactions.lenth > 1)
-          ? `Last ${transactions[0]}`
-          : "Initial Deposit"
+        user.transactions.length == 0
+          ? "No Transactions Yet"
+          : user.transactions.length == 1
+          ? "Initial Deposit"
+          : "Total in your account"
       }
-      body={"$" + totalState}
+      body={"$" + user.balance}
     />
   );
 };

@@ -30,12 +30,12 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar expand="sm" variant="dark" bg="dark">
+    <Navbar classname="nav-bar-container" expand="sm" variant="dark" bg="dark">
       <Container fluid>
         <Navbar.Brand>
-          <NavLink to="/">
-            <FaHome className="home-icon hvr-ripple-out" />
-          </NavLink>
+          <Link to="/">
+            <FaHome className="home-icon" />
+          </Link>
         </Navbar.Brand>
 
         {show ? (
@@ -59,8 +59,12 @@ const NavBar = () => {
                   </p>
                 </li>
               </NavLink>
-              <Link to="/login">
-                <li className="nav-item">
+              <NavLink to="/login">
+                <li
+                  className={(isActive) =>
+                    !isActive ? "nav-item unselected" : "nav-item active"
+                  }
+                >
                   <p
                     className="nav-link hvr-ripple-out"
                     data-bs-toggle="tooltip"
@@ -70,17 +74,22 @@ const NavBar = () => {
                     Login
                   </p>
                 </li>
-              </Link>
+              </NavLink>
             </ul>
           </div>
         )}
         {show ? (
           <div>
             <ul className="nav justify-content-center">
-              <Link to="/deposit">
-                <li className="nav-item">
+              <NavLink to="/deposit">
+                <li
+                  className={(isActive) =>
+                    !isActive ? "nav-item unselected" : "nav-item active"
+                  }
+                >
                   <p
                     className="nav-link hvr-ripple-out"
+                    activeClassName="nav-link hvr-ripple-out active"
                     data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
                     title="Click here to start depositng some honey"
@@ -88,11 +97,12 @@ const NavBar = () => {
                     Deposit
                   </p>
                 </li>
-              </Link>
-              <Link to="/withdraw">
+              </NavLink>
+              <NavLink to="/withdraw">
                 <li className="nav-item">
                   <p
                     className="nav-link hvr-ripple-out"
+                    activeClassName="nav-link hvr-ripple-out active"
                     data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
                     title="Click here if you need to get your hard cash out"
@@ -100,11 +110,12 @@ const NavBar = () => {
                     Withdraw
                   </p>
                 </li>
-              </Link>
-              <Link to="/balance">
+              </NavLink>
+              <NavLink to="/balance">
                 <li className="nav-item">
                   <p
                     className="nav-link hvr-ripple-out"
+                    activeClassName="nav-link hvr-ripple-out active"
                     data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
                     title="Click here to see your banknote stash"
@@ -112,33 +123,31 @@ const NavBar = () => {
                     Balance
                   </p>
                 </li>
-              </Link>
-              <Link to="/alldata">
+              </NavLink>
+              <NavLink to="/alldata">
                 <li className="nav-item">
                   <p
                     className="nav-link hvr-ripple-out"
+                    activeClassName="nav-link hvr-ripple-out active"
                     data-bs-toggle="tooltip"
                     data-bs-placement="bottom"
-                    title="Click here and see how your simoleons move"
+                    title="Click here to see information for all users"
                   >
                     AllData
                   </p>
                 </li>
-              </Link>
+              </NavLink>
               <div>
-                <NavLink to="/">
-                  <Button variant="dark" size="sm" onClick={handleLogOut}>
-                    Log Out
-                  </Button>
-                </NavLink>
-
-                <div className="nav-bar-greeting">
-                  <p>
-                    Signed in as:
-                    <br />
-                    {user.firstName} {user.lastName}
-                  </p>
-                </div>
+                <Navbar.Text>
+                  Signed in as: {user.firstName} {user.lastName}
+                  <br/>
+   
+                  <NavLink to="/">
+                    <Button variant="dark" size="sm" onClick={handleLogOut}>
+                      Log Out
+                    </Button>
+                  </NavLink>
+                </Navbar.Text>
               </div>
             </ul>
           </div>

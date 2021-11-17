@@ -1,7 +1,13 @@
 //import React, { useState, useContext } from "react";
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { AllUsersContext } from "../UsersContext";
 
@@ -86,6 +92,11 @@ const CreateAccount = ({ children }) => {
     return <ErrorMessage status="Account Created!" />;
   }
 
+  function handleCreateNewAccount() {
+    toggleShowConfirmation();
+    setShow(true);
+  }
+
   function handleClose() {
     setShowConfirmation(false);
     <Link to="/login">
@@ -125,6 +136,7 @@ const CreateAccount = ({ children }) => {
             onSubmit={CreateUser}
             validate={(values) => {
               const errors = {};
+
               if (!values.firstName) {
                 errors.firstName = "First name is required";
               }
@@ -148,16 +160,15 @@ const CreateAccount = ({ children }) => {
                 (values.firstName &&
                   values.lastName &&
                   values.email &&
-                  values.password != undefined) ||
-                null ||
-                ""
+                  values.password.length >= 8) == true
               ) {
                 //console.log(values.firstName);
                 //console.log(values.lastName);
-                //console.log(values.email);
-                //console.log(values.password);
-                name = values.firstName;
+                console.log(values.email);
+                console.log(values.password);
+
                 disabled = false;
+                console.log(disabled);
               }
               return errors;
             }}
@@ -169,20 +180,21 @@ const CreateAccount = ({ children }) => {
                 password: values.password,
                 balance: 0,
                 transactions: [],
-                token: "",
+                token: null,
               };
               console.log(createdUser);
               console.log(updateList);
               updateList[0].push(createdUser);
               console.log(updateList);
               name = values.firstName;
+              setSubmitting(false);
               setTimeout(() => {
                 setShowConfirmation(true);
-
               }, 400);
+              Formik.resetForm({ values: initialValues });
             }}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, validate }) => (
               <Form>
                 <h4> First Name </h4>
                 <Field type="text" name="firstName" />
@@ -213,16 +225,35 @@ const CreateAccount = ({ children }) => {
           </Formik>
         }
       />
-      <Modal name={firstName} show={showConfirmation} onClose={toggleShowConfirmation}>
+      <Modal
+        name={firstName}
+        show={showConfirmation}
+        onClose={toggleShowConfirmation}
+      >
         <Modal.Header>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
           <strong className="me-auto">Woohoo! Account Created!</strong>
           <small></small>
         </Modal.Header>
-        <Modal.Body name={firstName} >Thanks for creating an account with us {name}!</Modal.Body>
+        <Modal.Body name={firstName}>
+          Thanks for creating an account with us {name}!
+        </Modal.Body>
         <Modal.Footer>
+          <Button
+            className="btn-primary"
+            variant="primary"
+            onClick={handleCreateNewAccount}
+          >
+            Create another account
+          </Button>
           <NavLink to="/login">
-          <Button className="btn-primary" variant="primary" onClick={handleClose}>Go to login page</Button>
+            <Button
+              className="btn-primary"
+              variant="primary"
+              onClick={handleClose}
+            >
+              Go to login page
+            </Button>
           </NavLink>
         </Modal.Footer>
       </Modal>

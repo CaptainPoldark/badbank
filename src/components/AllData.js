@@ -1,51 +1,91 @@
-import React, { useContext } from "react";
-import { Container, Row } from "react-bootstrap";
-import Card from "./Card";
+import React, { useContext, useState } from "react";
+import {
+  Container,
+  Button,
+  Table,
+  Card,
+  Row,
+  ListGroup,
+} from "react-bootstrap";
 
 import { AllUsersContext } from "../UsersContext";
 
 const AllData = () => {
   const [updateList, setUpdateList] = useContext(AllUsersContext);
-  //console.log(JSON.stringify(users));
 
   console.log(updateList);
   //const [userList, setUserList] = React.useState(users);
   //console.log(userList);
 
   return (
-    <ul className="list-group list-group-flush">
-      <li className="list-group-item" key="title">
-        Showing information for all users from UsersContext
-      </li>
+    <div>
+      <Card style={{ width: "80%" }}>
+        <Card.Body>
+          <Card.Title>All User Data</Card.Title>
+          <Card.Text>
+            <Table responsive striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Balance</th>
+                  <th>Logged In</th>
+                </tr>
+              </thead>
+              <tbody>
+                {updateList.map((user, i) => (
+                  <tr>
+                    <td>{user.firstName}</td>
+                    <td>{user.lastName}</td>
+                    <td>{user.email}</td>
+                    <td>{user.password}</td>
+                    <td>$ {user.balance}</td>
+                    <td>{user.token ? "Yes" : "No"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Card.Text>
+        </Card.Body>
+      </Card>
       <br />
       <Container>
         <Row>
           {updateList.map((user, i) => (
-            <Card
-              bgcolor="dark"
-              header={
-                <h3>
-                  {user.firstName} {user.lastName}
-                </h3>
-              }
-              title={`Current Balance $${user.balance}`}
-              text={
-                <p>
-                  Email: {user.email} <br />
-                  Password: {user.password}{" "}<br/>
-                  Currently logged in: {user.token ? "Yes": "No"}
-                </p>
-              }
-              body={user.transactions.map((trans, i) => (
-                <li className="list-group-item" index={i}>
-                  {trans}
-                </li>
-              ))}
-            />
+            <Card className="transaction-card" style={{ width: "25%" }}>
+              <Card.Body>
+                <Card.Title>
+                  {
+                    <h3>
+                      {user.firstName} {user.lastName}
+                    </h3>
+                  }
+                </Card.Title>
+                <Card.Text>
+                  {
+                    <div>
+                      Current Balance $ {user.balance}
+                      <br />
+                      <br />
+                      <li className="list-group-item">Transaction History</li>
+                      {user.transactions.map((trans, i) => (
+                        <li className="list-group-item">{trans}</li>
+                      ))}
+                    </div>
+                  }
+                </Card.Text>
+              </Card.Body>
+            </Card>
           ))}
+          <br />
+          <br />
         </Row>
+        <br />
+        <br />
       </Container>
-    </ul>
+    </div>
   );
 };
 

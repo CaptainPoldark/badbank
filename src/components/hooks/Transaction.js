@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 import Card from "../Card";
 
@@ -16,12 +18,10 @@ const Transaction = (props) => {
 
   const [deposit, setDeposit] = useState(0);
 
-
   const [isDeposit, setIsDeposit] = useState(props.isDeposit);
   const [atmMode, setAtmMode] = useState(props.mode);
   const [error, setError] = useState("");
   const [validTransaction, setValidTransaction] = useState(false);
-
 
   const allDeposits = [];
 
@@ -63,6 +63,8 @@ const Transaction = (props) => {
     let currentUser = user;
     currentUser.transactions = transactions;
     currentUser.balance = newTotal;
+    setError("Transaction was successful!");
+    setTimeout(() => setError(""), 3000);
     setUser(currentUser);
     setValidTransaction(false);
 
@@ -71,25 +73,23 @@ const Transaction = (props) => {
   };
 
   function ATMDeposit(onChange, atmMode, isValid) {
-    const choice = ["Deposit", "Withdraw"];
     console.log(`ATMDeposit atmMode: ${atmMode}`);
     return (
       <div className="mb-3">
-        <label className="form-label">
-          <input
-            id="number-input"
-            type="text"
-            width="80"
-            onChange={onChange}
-          ></input>
-          <input
-            type="submit"
-            disabled={!isValid}
-            width="80"
-            value={`Make A ${atmMode}`}
-            id="submit-input"
-          ></input>
-        </label>
+        <label className="form-label"> </label>
+        <input
+          id="number-input"
+          type="text"
+          width="80"
+          onChange={onChange}
+        ></input>
+        <input
+          type="submit"
+          disabled={!isValid}
+          width="80"
+          value={`Make A ${atmMode == "Deposit" ? atmMode : `${atmMode}al`}`}
+          id="submit-input"
+        ></input>
       </div>
     );
   }
@@ -102,7 +102,7 @@ const Transaction = (props) => {
             key="transaction-card"
             bgcolor="dark"
             header={status}
-            title={props.mode}
+            title={atmMode == "Deposit" ? atmMode : `${atmMode}al`}
             status={error}
             text=""
             body={
@@ -111,13 +111,37 @@ const Transaction = (props) => {
                   handleSubmit(e, allDeposits, isDeposit);
                 }}
               >
-                <>{ATMDeposit(handleChange, atmMode, validTransaction)}</>
+                <div className="mb-3">
+                  <label className="form-label"> </label>
+                  <input
+                    id="number-input"
+                    type="text"
+                    width="80"
+                    onChange={handleChange}
+                  ></input>
+                  <br />
+                  <br />
+                  <Button
+                    variant="dark"
+                    type="submit"
+                    disabled={!validTransaction}
+                    id="submit-input"
+                  >{`Make A ${
+                    atmMode == "Deposit" ? atmMode : `${atmMode}al`
+                  }`}</Button>
+                </div>
               </form>
             }
           />
+          <NavLink to={atmMode == "Deposit" ? "/withdraw" : "/deposit"}>
+            <Button className="btn-dark col-lg-11 choice-btn" variant="primary">
+              Need to make a {atmMode == "Deposit" ? "Withdrawal" : "Deposit"}{" "}
+              instead?
+            </Button>
+          </NavLink>
         </div>
         <div className="col-12 col-md-8">
-          <ul className="list-group list-group-flush">
+          <ul className="list-group list-group-flush transaction-log">
             <li className="list-group-item" key="title">
               Showing last 7 transactions
             </li>

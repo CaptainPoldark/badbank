@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import { Alert } from 'react-bootstrap';
 
 import UserProvider, { UserContext } from "./UserContext";
 
@@ -12,7 +13,7 @@ const Home = () => {
   const [user, setUser] = useContext(UserContext);
   return (
     <div>
-      {user.firstName}
+      {user.firstName ? (<div><Alert variant="dark" >Hello, {user.firstName}</Alert></div>):""}
     <Card
       bgcolor="dark"
       header="BadBank Landing Page"
