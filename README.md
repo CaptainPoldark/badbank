@@ -6,11 +6,17 @@ https://captainpoldark.github.io/badbank/
 
 This project was made to practice using React, React States, React Context creating a user session, 
 etc. When first accessing the app from the link above a React Bootstrap card should be shown letting
-you know that this isn't the banking app you're looking for. If you click "Create Account" you
-can create an account. You will then be presented with the option to create another account or
-to go to the login screen. This app temporarily saves your account until you refresh the browser.
+you know that this isn't the banking app you're looking for. Initially, only the "Create Account" and
+"Login" navigation links will be visible.
 
-The login form includes validation. The email address must match one stored in user.json or one of
+The "Create Account" page allows you to create an account. The account creation form includes 
+validation checks to ensure that all fields have been filled in, that an email address has been 
+entered (though it doesn't need to be a real email address), and that the password entered is at least
+8 characters long. The submit button will only be enabled after all checks have passed. After clicking 
+submit you will then be presented with the option to create another account or to go to the login screen. 
+This app temporarily saves your account until you refresh the browser.
+
+The login form includes validation checks. The email address must match one stored in user.json or one of
 the user created accounts from the "Create Account" page. If the email address entered matches one
 stored in the UsersContext state, which includes the premade and user created accounts, the password
 will be checked to see if it matches the password for the entered email address. No information is
