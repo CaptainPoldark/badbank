@@ -40,19 +40,15 @@ state information.
 There are four pre-made accounts.
 
 ### Email: jneutron@protonmail.com
-
 ### Password: Goddard
 
 ### Email: jmcgill@hhm.com
-
 ### Password: SaulGoodman
 
 ### Email: capjack@pearl.net
-
 ### Password: 193yZYCnN5uB
 
 ### Email: mightypirate@scummbucket.io
-
 ### Password: porcelain
 
 None of the "user" data provided was meant to represent real email accounts. If a real email address is
