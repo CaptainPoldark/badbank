@@ -1,6 +1,7 @@
 # badbank
 
 https://captainpoldark.github.io/badbank/
+https://jonathankyle-badbank.s3.us-east-2.amazonaws.com/index.html
 
 ## About
 
