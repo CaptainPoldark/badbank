@@ -86,16 +86,13 @@ p {
     90deg,
     transparent 10%,
     rgba(2, 0, 36, 1) 40%,
-
     rgba(25, 25, 82, 1) 60%,
-
     rgba(0, 212, 255, 1) 85%,
     transparent 90%
   );
 
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-
 }
 .hvr-ripple-out:hover:before,
 .hvr-ripple-out:focus:before,
@@ -167,6 +164,21 @@ p {
 }
 .card:p {
   color: #8899a6;
+}
+.password-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.eye-button {
+  color: #15202b;
+  position: absolute;
+  top: 25%;
+  right: 22%;
+}
+.eye-button:hover {
+  transform: scale(1.5);
 }
 
 .list-group-item {

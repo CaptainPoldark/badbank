@@ -108,7 +108,7 @@ export default function Login({ token, setToken }) {
                     />
                   </label>
                   <div>
-                    <button type="submit">Login</button>
+                    <Button variant="dark" type="submit">Login</Button>
                   </div>
                 </form>
               </div>

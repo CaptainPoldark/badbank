@@ -1,6 +1,12 @@
 //import React, { useState, useContext } from "react";
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState } from "react";
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  setNestedObjectValues,
+} from "formik";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,7 +14,8 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { FaRegEye } from "react-icons/fa";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { AllUsersContext } from "../UsersContext";
 
 // Components
@@ -22,15 +29,25 @@ const CreateAccount = ({ children }) => {
   console.log("React User Context state:");
   console.log(updateList);
   let prevUsers = updateList;
-  let createdUser = {};
 
-  const [show, setShow] = React.useState(true);
+
+  const [show, setShow] = useState(true);
   const [status, setStatus] = React.useState("");
+  const [showPassowrd, setShowPassword] = useState(false);
   const [firstName, lastName, email, password] = "";
   const [showConfirmation, setShowConfirmation] = React.useState(false);
   const toggleShowConfirmation = () => setShowConfirmation(!showConfirmation);
   let disabled = true;
   let name = "";
+  var createdUser = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    password: password,
+    balance: 0,
+    transactions: [],
+    token: null,
+  };
 
   const initialValues = {
     firstName: "",
@@ -39,7 +56,9 @@ const CreateAccount = ({ children }) => {
     password: "",
   };
 
-  //const ctx = React.useContext(UserContext);
+  const toggleShowPassword = () => {
+    setShowPassword(showPassowrd ? false : true);
+  };
 
   function formValidation(field, label) {
     if (!field) {
@@ -77,6 +96,8 @@ const CreateAccount = ({ children }) => {
       transactions: [],
       token: "",
     };
+    name = firstName;
+    console.log(`Assigned ${firstName}`);
     //prevUsers.push(createdUser);
     updateList(createdUser);
     toggleShowConfirmation();
@@ -138,24 +159,31 @@ const CreateAccount = ({ children }) => {
               const errors = {};
 
               if (!values.firstName) {
+                disabled = true;
                 errors.firstName = "First name is required";
               }
               if (!values.lastName) {
+                disabled = true;
                 errors.lastName = "Last name is required";
               }
               if (!values.email) {
+                disabled = true;
                 errors.email = "Email is required";
               }
               if (!values.password) {
+                disabled = true;
                 errors.password = "Password is required";
+              }
+              if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                disabled = true;
+                errors.email = "Invalid email address";
               }
               if (values.password.length < 8) {
                 errors.password = "Password should be at least 8 characters";
-              } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-              ) {
-                errors.email = "Invalid email address";
               }
+
               if (
                 (values.firstName &&
                   values.lastName &&
@@ -172,7 +200,7 @@ const CreateAccount = ({ children }) => {
               }
               return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               createdUser = {
                 firstName: values.firstName,
                 lastName: values.lastName,
@@ -191,7 +219,8 @@ const CreateAccount = ({ children }) => {
               setTimeout(() => {
                 setShowConfirmation(true);
               }, 400);
-              Formik.resetForm({ values: initialValues });
+              resetForm({});
+              return createdUser;
             }}
           >
             {({ isSubmitting, validate }) => (
@@ -208,13 +237,28 @@ const CreateAccount = ({ children }) => {
                 <Field type="email" name="email" />
                 <br />
                 <br />
+
                 <h4> Password </h4>
-                <Field type="password" name="password" />
+                <div className="password-wrapper">
+                  <Field
+                    type={showPassowrd ? "text" : "password"}
+                    name="password"
+                  />
+                  <FaRegEye
+                    className="eye-button"
+                    onClick={toggleShowPassword}
+                  />
+                </div>
                 <br />
                 <br />
-                <button type="submit" disabled={disabled}>
+                <Button variant="danger" type="reset">
+                  Reset
+                </Button>
+                <Button variant="dark" type="submit" disabled={disabled}>
                   Submit
-                </button>
+                </Button>
+                <br />
+                <br />
 
                 <ErrorMessage name="firstName" component="div" />
                 <ErrorMessage name="lastName" component="div" />
@@ -235,7 +279,8 @@ const CreateAccount = ({ children }) => {
           <strong className="me-auto">Woohoo! Account Created!</strong>
           <small></small>
         </Modal.Header>
-        <Modal.Body name={firstName}>
+        <Modal.Body name={name}>
+          {name = prevUsers[(prevUsers.length-1)].firstName}
           Thanks for creating an account with us {name}!
         </Modal.Body>
         <Modal.Footer>

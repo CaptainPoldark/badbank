@@ -116,7 +116,7 @@ const Transaction = (props) => {
                   <input
                     id="number-input"
                     type="text"
-                    width="80"
+
                     onChange={handleChange}
                   ></input>
                   <br />
