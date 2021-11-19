@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/badbank/static/css/main.b65851ff.chunk.css",
-    "main.js": "/badbank/static/js/main.b13d6d27.chunk.js",
-    "main.js.map": "/badbank/static/js/main.b13d6d27.chunk.js.map",
+    "main.css": "/badbank/static/css/main.c687e465.chunk.css",
+    "main.js": "/badbank/static/js/main.e1bc321a.chunk.js",
+    "main.js.map": "/badbank/static/js/main.e1bc321a.chunk.js.map",
     "runtime-main.js": "/badbank/static/js/runtime-main.097fecb9.js",
     "runtime-main.js.map": "/badbank/static/js/runtime-main.097fecb9.js.map",
-    "static/js/2.3411f4d7.chunk.js": "/badbank/static/js/2.3411f4d7.chunk.js",
-    "static/js/2.3411f4d7.chunk.js.map": "/badbank/static/js/2.3411f4d7.chunk.js.map",
+    "static/js/2.004aad70.chunk.js": "/badbank/static/js/2.004aad70.chunk.js",
+    "static/js/2.004aad70.chunk.js.map": "/badbank/static/js/2.004aad70.chunk.js.map",
     "index.html": "/badbank/index.html",
-    "static/css/main.b65851ff.chunk.css.map": "/badbank/static/css/main.b65851ff.chunk.css.map",
-    "static/js/2.3411f4d7.chunk.js.LICENSE.txt": "/badbank/static/js/2.3411f4d7.chunk.js.LICENSE.txt"
+    "static/css/main.c687e465.chunk.css.map": "/badbank/static/css/main.c687e465.chunk.css.map",
+    "static/js/2.004aad70.chunk.js.LICENSE.txt": "/badbank/static/js/2.004aad70.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.097fecb9.js",
-    "static/js/2.3411f4d7.chunk.js",
-    "static/css/main.b65851ff.chunk.css",
-    "static/js/main.b13d6d27.chunk.js"
+    "static/js/2.004aad70.chunk.js",
+    "static/css/main.c687e465.chunk.css",
+    "static/js/main.e1bc321a.chunk.js"
   ]
 }
