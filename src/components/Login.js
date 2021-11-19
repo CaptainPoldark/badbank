@@ -118,7 +118,7 @@ export default function Login({ token, setToken }) {
       ) : (
         <Card
           bgcolor="dark"
-          header={<h3>You've successfully logged in!</h3>}
+          header={<h3> Hey, {currentUser.firstName} {currentUser.lastName}! You've successfully logged in!</h3>}
           //status={status}
           body={
             <div className="login-wrapper">

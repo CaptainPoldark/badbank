@@ -43,6 +43,22 @@ const NavBar = () => {
         ) : (
           <div>
             <ul className="nav justify-content-center">
+              <NavLink to="/">
+                <li
+                  className={(isActive) =>
+                    !isActive ? "nav-item unselected" : "nav-item active"
+                  }
+                >
+                  <p
+                    className="nav-link hvr-ripple-out"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Click here to go to the Home Page"
+                  >
+                    Home
+                  </p>
+                </li>
+              </NavLink>
               <NavLink to="/CreateAccount">
                 <li
                   className={(isActive) =>
@@ -81,6 +97,23 @@ const NavBar = () => {
         {show ? (
           <div>
             <ul className="nav justify-content-center">
+              <NavLink to="/">
+                <li
+                  className={(isActive) =>
+                    !isActive ? "nav-item unselected" : "nav-item active"
+                  }
+                >
+                  <p
+                    className="nav-link hvr-ripple-out"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Click here to go to the Home Page"
+                  >
+                    Home
+                  </p>
+                </li>
+              </NavLink>
+
               <NavLink to="/deposit">
                 <li
                   className={(isActive) =>
@@ -140,8 +173,7 @@ const NavBar = () => {
               <div>
                 <Navbar.Text>
                   Signed in as: {user.firstName} {user.lastName}
-                  <br/>
-   
+                  <br />
                   <NavLink to="/">
                     <Button variant="dark" size="sm" onClick={handleLogOut}>
                       Log Out

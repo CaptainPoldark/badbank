@@ -254,7 +254,7 @@ const CreateAccount = ({ children }) => {
                 <Button variant="danger" type="reset">
                   Reset
                 </Button>
-                <Button variant="dark" type="submit" disabled={disabled}>
+                <Button className="submit-login-button" variant="dark" type="submit" disabled={disabled}>
                   Submit
                 </Button>
                 <br />

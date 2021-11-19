@@ -54,7 +54,7 @@ const AllData = () => {
       <Container>
         <Row>
           {updateList.map((user, i) => (
-            <Card style={{ width: "25%" }}>
+            <Card style={{ width: "30%", "margin-bottom": "20px"}}>
               <Card.Body>
                 <Card.Title>
                   {

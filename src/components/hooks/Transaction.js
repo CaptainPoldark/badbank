@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 
 import Card from "../Card";
 
@@ -22,8 +22,13 @@ const Transaction = (props) => {
   const [atmMode, setAtmMode] = useState(props.mode);
   const [error, setError] = useState("");
   const [validTransaction, setValidTransaction] = useState(false);
+  const [showAllTransactions, setShowAllTransactions] = useState(false);
 
   const allDeposits = [];
+
+  const toggleShowAllTransactions = () => {
+    setShowAllTransactions(showAllTransactions ? false : true);
+  };
 
   let status = `Account Balance $ ${user.balance} `;
   console.log(`Account Rendered with isDeposit: ${isDeposit}`);
@@ -31,6 +36,10 @@ const Transaction = (props) => {
 
   const handleChange = (event) => {
     console.log(event.target.value);
+
+    if (!event.target.value) {
+      return setValidTransaction(false);
+    }
     if (!Number(event.target.value)) {
       setError("Enter numbers only");
       setTimeout(() => setError(""), 3000);
@@ -67,7 +76,7 @@ const Transaction = (props) => {
     setTimeout(() => setError(""), 3000);
     setUser(currentUser);
     setValidTransaction(false);
-
+    event.target.value = "";
     event.preventDefault();
     return allDeposits;
   };
@@ -80,6 +89,7 @@ const Transaction = (props) => {
         <input
           id="number-input"
           type="text"
+          value=""
           width="80"
           onChange={onChange}
         ></input>
@@ -116,7 +126,6 @@ const Transaction = (props) => {
                   <input
                     id="number-input"
                     type="text"
-
                     onChange={handleChange}
                   ></input>
                   <br />
@@ -143,16 +152,43 @@ const Transaction = (props) => {
         <div className="col-12 col-md-8">
           <ul className="list-group list-group-flush transaction-log">
             <li className="list-group-item" key="title">
-              Showing last 7 transactions
+              {console.log(transactions.length)}
+              {transactions.length === 0 ? (
+                <Alert variant="dark">
+                  No transactions to show yet. Try depositing some money!
+                </Alert>
+              ) : !showAllTransactions && transactions.length > 7 ? (
+                "Showing last 7 Transactions"
+              ) : (
+                "Showing All Transactions"
+              )}
+
+              <Button
+                className="show-all-button"
+                hidden={transactions.length < 8}
+                variant="dark"
+                onClick={toggleShowAllTransactions}
+              >
+                {showAllTransactions && transactions.length > 7
+                  ? "Show less"
+                  : "Show more"}
+              </Button>
             </li>
-            {transactions.map(
-              (trans, i) =>
-                i < 7 && (
+
+            {showAllTransactions
+              ? transactions.map((trans, i) => (
                   <li className="list-group-item" key={i}>
                     {trans}
                   </li>
-                )
-            )}
+                ))
+              : transactions.map(
+                  (trans, i) =>
+                    i < 7 && (
+                      <li className="list-group-item" key={i}>
+                        {trans}
+                      </li>
+                    )
+                )}
           </ul>
         </div>
 
